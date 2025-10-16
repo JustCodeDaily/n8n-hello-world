@@ -1,37 +1,8 @@
 services:
   - type: web
-    name: n8n
+    name: n8n-free
     env: docker
     plan: free
+    region: frankfurt   # pick a nearby region; you can change in the UI
     autoDeploy: true
-    startCommand: "n8n start"
-    envVars:
-      - key: N8N_ENCRYPTION_KEY
-        sync: false
-      - key: N8N_BASIC_AUTH_ACTIVE
-        value: "true"
-      - key: N8N_BASIC_AUTH_USER
-        sync: false
-      - key: N8N_BASIC_AUTH_PASSWORD
-        sync: false
-      - key: DB_TYPE
-        value: postgresdb
-      - key: DB_POSTGRESDB_HOST
-        sync: false
-      - key: DB_POSTGRESDB_PORT
-        value: "5432"
-      - key: DB_POSTGRESDB_DATABASE
-        value: postgres
-      - key: DB_POSTGRESDB_USER
-        sync: false
-      - key: DB_POSTGRESDB_PASSWORD
-        sync: false
-      - key: DB_POSTGRESDB_SCHEMA
-        value: public
-      - key: DB_POSTGRESDB_SSL
-        value: "true"
-      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-        value: "false"
-      - key: N8N_PROTOCOL
-        value: https
-      # set N8N_HOST after first deploy to your onrender domain
+    healthCheckPath: /healthz
